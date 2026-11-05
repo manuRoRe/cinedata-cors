@@ -9,9 +9,17 @@ async function pedir(ruta, opciones = {}) {
     const res = await fetch(`${API_URL}${ruta}`, {...opciones, headers: cabecera});
     const datos = res.status === 204 ? null : await res.json();
     if (!res.ok){
-        throw new Error(datos?.error || `Error ${res.status}`);
+        const err = new Error(datos?.error || `Error ${res.status}`);
+        err.detalles = Array.isArray(datos?.detalles) ? datos.detalles : [];
+        throw err;
     }
     return datos;
+}
+
+export function estadisticasPorGenero(minimo) {
+    const hayValor = minimo !== undefined && minimo !== null && minimo !== "";
+    const query = hayValor ? `?${new URLSearchParams({ minimo })}` : "";
+    return pedir(`/peliculas/estadisticas${query}`);
 }
 
 export function listarPeliculas(parametros) {
@@ -38,7 +46,7 @@ export async function login(email, password) {
     });
 
     if(!datos) {
-        throw new Error({error: "Usuario y contraseña incorrectos"});
+        throw new Error("Usuario y contraseña incorrectos");
     }
 
     localStorage.setItem("token", datos.token);
