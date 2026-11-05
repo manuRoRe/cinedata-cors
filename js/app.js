@@ -22,7 +22,7 @@ async function cargarPeliculas() {
         pintarPaginacion(paginacion);
         mostrarMensaje(`${paginacion.total} peliculas`);
     }catch (error) {
-        mostrarMensaje(error.mensaje, true)
+        mostrarMensaje(error.message, true)
     }
 }
 
@@ -90,7 +90,7 @@ function pintarSesion() {
  async function cargarResenas() {
     const resenas = await resenasDe(estado.peliculaAbierta);
     $("#lista-resenas").innerHTML = resenas.length 
-    ? resenas.map(r => `<li><b>${r.usuario}</b> ${r.valoracion} * ${r.texto}</li>)`).join("") 
+    ? resenas.map(r => `<li><b>${r.usuario}</b> ${r.valoracion} * ${r.texto}</li>`).join("") 
     : "<li>Todavia no hay reseñas.</li>";
     $("#panel-resenas").hidden = false;    
  }
