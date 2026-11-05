@@ -135,6 +135,36 @@ button:disabled { background: var(--deshabilitado); cursor: default; }
 .tarjeta p { color: var(--texto-secundario); }
 .tarjeta .nota { font-weight: bold; color: var(--primario); }
 
+[hidden] { display: none !important; }
+
+.boton-tarjeta {
+  margin-top: auto;
+  padding: 8px 10px;
+  font: inherit;
+  text-align: left;
+  color: var(--primario);
+  background: none;
+  border: 1px solid var(--primario);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.boton-tarjeta:hover { background: var(--primario-claro); color: var(--primario-oscuro); }
+.boton-tarjeta:focus-visible { outline: 3px solid var(--primario); outline-offset: 2px; }
+
+.vista-genero { display: flex; flex-direction: column; gap: 12px; }
+
+.vista-genero-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.vista-genero-cabecera p { color: var(--texto-secundario); }
+#genero-titulo:focus-visible { outline: 3px solid var(--primario); outline-offset: 2px; }
+
 .paginacion {
   display: flex;
   justify-content: center;
